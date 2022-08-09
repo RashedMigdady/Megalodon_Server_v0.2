@@ -39,7 +39,7 @@ const updateUserById = (req, res) => {
     res.json(result);
   });
 };
-//////////////////////////////////////
+
 const getInfo = (req, res) => {
   const id = req.token.userId;
   const query = `SELECT * FROM users WHERE id=${id}`;
@@ -51,8 +51,7 @@ const getInfo = (req, res) => {
         error: err,
       });
     }
-    res.status(200);
-    res.json(result);
+    res.status(200).json(result);
   });
 };
 
