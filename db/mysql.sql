@@ -1,6 +1,6 @@
 
 
-USE ajtraiz4_MERAKI_Academy_Project_5;
+USE sql6.freesqldatabase.com;
 
 
 -- -----------------------------------------------------
