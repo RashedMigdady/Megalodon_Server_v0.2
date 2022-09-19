@@ -69,7 +69,11 @@ const createNewUser = async (req, res) => {
     // emailId: resultLoging[0].email,
     // };
     res.status(200);
-    res.json(result);
+    res.json({
+      success: true,
+      message: `Sign up successfully`,
+      result,
+    });
     // const options = {
     //   expiresIn: "600h",
     // };
