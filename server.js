@@ -14,6 +14,7 @@ const loginRouter = require("./routers/routes/auth/login");
 const usersRouter = require("./routers/routes/users");
 const cartRouter = require("./routers/routes/cart");
 const { remainder } = require("./routers/controllers/remainder");
+const LookUpsIdsRouter = require('./routers/routes/LookUpsIds/LookUpsIds');
 
 
 // const messageRouter = require("./routers/routes/sendMsg")
@@ -32,6 +33,7 @@ app.use("/register", registerRouter);
 app.use("/login",loginRouter);
 app.use("/users", usersRouter);
 app.use("/cart", cartRouter);
+app.use('/LookUpsIds',LookUpsIdsRouter);
 
 var now = new Date();
 var daily = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 0, 0, 0) - now;
