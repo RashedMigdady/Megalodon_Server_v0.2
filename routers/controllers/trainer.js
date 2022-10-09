@@ -33,12 +33,12 @@ const createNewTrainer = (req, res) => {
      return res.status(500).json({
         success: false,
         message: `Server Error`,
-        // err: err,
+        err: err,
       });
     }
    return res.status(201).json({
       success: true,
-      message: ` Success Trainer created`,
+      message: `Create New Trainer is Done !`,
       Trainer: result,
     });
   });
