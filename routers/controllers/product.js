@@ -66,7 +66,7 @@ const getAllProducts = (req, res) => {
   connection.query(query, (err, Allproducts) => {
     if (err) return res.status(404).json({ success: false, message: "There is Error!", Error: err });
 
-    return res.status(200).json({ success: true, message: "All Products", Products: Allproducts });
+    return res.status(200).json({ success: true, message: "All Products", Products: Allproducts, totalCount: Allproducts.length });
   })
 }
 

@@ -71,6 +71,7 @@ const getComment = (req, res) => {
       success: true,
       message: `get comment`,
       comment: result,
+      totalCount: result.length
     });
   });
 };

@@ -37,14 +37,14 @@ const getAllResturants = (req, res) => {
   const query = `SELECT * FROM resturant WHERE is_deleted=0 `
   connection.query(query, (error, result) => {
 
-    // if (error) {
-    //   res.status(500).json({
-    //     success: false,
-    //     message: `Server Error`,
-    //     error: error,
-    //   });
-    // }
-    res.status(200).json({ success: true, message: " All Resturants ", result: result });
+    if (error) {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        error: error,
+      });
+    }
+    res.status(200).json({ success: true, message: " Get All Resturants ", result: result, totalCount: result.length });
   });
 };
 
@@ -62,8 +62,11 @@ const updateResturantById = (req, res) => {
   const query = `UPDATE resturant SET name= "${name}" , location="${location}" , image="${image}" ,monthlyPrice="${monthlyPrice}",rate="${rate}" WHERE id= ${id}`;
   connection.query(query, (err, result) => {
     if (err) {
-      console.log(err.response);
-      return;
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        error: error,
+      });
     }
     res.status(200).json({
       success: true,
@@ -78,8 +81,11 @@ const deleteResturantById = (req, res) => {
   const query = `UPDATE resturant SET is_deleted="1"  WHERE id = ${id}`
   connection.query(query, (err, result) => {
     if (err) {
-      console.log(err.response);
-      return;
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        error: error,
+      });
     }
     res.status(200).json({
       success: true,

@@ -30,13 +30,13 @@ const createNewTrainer = (req, res) => {
 
   connection.query(sql, data, (err, result) => {
     if (err) {
-     return res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: `Server Error`,
         err: err,
       });
     }
-   return res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: `Create New Trainer is Done !`,
       Trainer: result,
@@ -81,13 +81,13 @@ const getTrainerById = (req, res) => {
   const query = `SELECT * FROM trainers WHERE id=${id}`;
   connection.query(query, (err, result) => {
     if (err) {
-     return res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: `Server Error`,
         err: err,
       });
     }
-   return res.status(200).json({
+    return res.status(200).json({
       success: true,
       Trainer: result,
     });
@@ -98,8 +98,8 @@ const getAllTrainer = (req, res) => {
   const query = `SELECT * FROM trainers where is_deleted = 0`;
   connection.query(query, (err, result) => {
     if (err) {
-      console.log(`getAlltrainer`,err);
-       return res.status(500).json({
+      console.log(`getAlltrainer`, err);
+      return res.status(500).json({
         success: false,
         message: `Server Error`,
         err: err,
@@ -107,7 +107,9 @@ const getAllTrainer = (req, res) => {
     }
     return res.status(200).json({
       success: true,
+      message: "Get all Trainers is done! ",
       allTrainers: result,
+      totalCount: result.length
     });
   });
 };
@@ -115,11 +117,11 @@ const getAllTrainer = (req, res) => {
 const deleteTrainerById = (req, res) => {
   let { id } = req.params;
   const query = `UPDATE trainers SET is_deleted = 1 WHERE id =${id}`;
-  
+
   connection.query(query, (err, result) => {
     if (err) {
       console.log(err);
-     return res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: `Server Error`,
         err: err,
@@ -131,7 +133,7 @@ const deleteTrainerById = (req, res) => {
         message: `The Trainer => ${id} not found`,
       });
     }
-   return res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: `Success Delete Trainer with id => ${id}`,
     });

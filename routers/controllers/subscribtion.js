@@ -6,7 +6,7 @@ const addGymUser = (req, res) => {
   const date = `${d.getFullYear()}-${d.getMonth() + 2}-${d.getDate()}`;
   const query = `INSERT INTO subscriptionsGym (userId , gymId , date_to) VALUES (?,?,?)`;
   const data = [userId, gymId, date];
-  connection.query(query, data, (err, result ) => {
+  connection.query(query, data, (err, result) => {
     if (err)
       return res
         .status(404)
@@ -52,46 +52,46 @@ const addRestaruntUser = (req, res) => {
   });
 };
 /////////////////////////////////////////////////////////////////
-const getResturantsSubscribtion = (req , res)=>{
-  const id  = req.token.userId;
+const getResturantsSubscribtion = (req, res) => {
+  const id = req.token.userId;
   const query = `SELECT * FROM subscriptionsRestaurant INNER JOIN resturant ON subscriptionsRestaurant.restaurantId=resturant.id WHERE userId=${id}`;
-  connection.query(query , (err , result)=>{
-   // if (err) return res.status(404).json({success:false , message:"There is Error!" , Error:err});
+  connection.query(query, (err, result) => {
+    if (err) return res.status(500).json({ success: false, message: "There is Error!", Error: err });
 
-   res.status(200).json({success:true , message:"get all restaurants subscriptions!" , result:result});
+    res.status(200).json({ success: true, message: "get all restaurants subscriptions!", result: result });
   })
 }
 
-const getGymsSubscribtion = (req , res)=>{
-  const id  = req.token.userId;
+const getGymsSubscribtion = (req, res) => {
+  const id = req.token.userId;
   const query = `SELECT * FROM subscriptionsGym INNER JOIN gym ON subscriptionsGym.gymId=gym.id WHERE userId=${id}`;
-  connection.query(query , (err , result)=>{
-   // if (err) return res.status(404).json({success:false , message:"There is Error!" , Error:err});
+  connection.query(query, (err, result) => {
+    if (err) return res.status(500).json({ success: false, message: "There is Error!", Error: err });
 
-   res.status(200).json({success:true , message:"get all gyms subscriptions!" , result:result});
+    res.status(200).json({ success: true, message: "get all gyms subscriptions!", result: result });
   })
 }
 
-const getTrainersSubscribtion = (req , res)=>{
-  const id  = req.token.userId;
+const getTrainersSubscribtion = (req, res) => {
+  const id = req.token.userId;
   const query = `SELECT userId,trainerId,date_to,id,phoneNumber,location,image,sport,priceMonthly,description,experience ,CONCAT(firstName," ",lastName) AS name FROM subscriptionsTrainers INNER JOIN trainers ON subscriptionsTrainers.trainerId=trainers.id WHERE userId=${id}`;
-  connection.query(query , (err , result)=>{
-   // if (err) return res.status(404).json({success:false , message:"There is Error!" , Error:err});
+  connection.query(query, (err, result) => {
+    if (err) return res.status(500).json({ success: false, message: "There is Error!", Error: err });
 
-   res.status(200).json({success:true , message:"get all trainers subscriptions!" , result:result});
+    res.status(200).json({ success: true, message: "get all trainers subscriptions!", result: result });
   })
 }
 
-const getAllResturantsSubscribtion = (req , res)=>{
-  
+const getAllResturantsSubscribtion = (req, res) => {
+
   const query = `SELECT * FROM subscriptionsRestaurant INNER JOIN resturant ON subscriptionsRestaurant.restaurantId=resturant.id
    INNER JOIN users ON subscriptionsRestaurant.userId=users.id `;
-  connection.query(query , (err , result)=>{
-   // if (err) return res.status(404).json({success:false , message:"There is Error!" , Error:err});
+  connection.query(query, (err, result) => {
+    if (err) return res.status(500).json({ success: false, message: "There is Error!", Error: err });
 
-   res.status(200).json({success:true , message:"get all restaurants subscriptions!" , result:result});
+    res.status(200).json({ success: true, message: "get all restaurants subscriptions!", result: result });
   })
 }
 
 
-module.exports = { addGymUser, addRestaruntUser, addTrainerUser , getResturantsSubscribtion , getGymsSubscribtion , getTrainersSubscribtion,getAllResturantsSubscribtion};
+module.exports = { addGymUser, addRestaruntUser, addTrainerUser, getResturantsSubscribtion, getGymsSubscribtion, getTrainersSubscribtion, getAllResturantsSubscribtion };

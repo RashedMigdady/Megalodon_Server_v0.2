@@ -84,8 +84,9 @@ const getAllGyms = (req, res) => {
     }
     return res.status(200).json({
       success: true,
-      message: "all  gyms in your website ",
+      message: "Get all gyms is done! ",
       result: result,
+      totalCount: result.length
     });
     
   });
