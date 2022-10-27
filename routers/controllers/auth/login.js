@@ -11,6 +11,7 @@ const clientId = new OAuth2Client(
 const login = (req, res) => {
   const password = req.body.password;
   const email = req.body.email.toLowerCase();
+  const ipData = req.body.ipData;
   const query = `SELECT * FROM users WHERE email ='${email}'`;
   connection.query(query, async (err, result) => {
     if (err) {
@@ -38,6 +39,7 @@ const login = (req, res) => {
         userId: result[0].id,
         role: result[0].role,
         emailId:result[0].email,
+        ipData,
       };
 
       const options = {
